@@ -1,0 +1,17 @@
+<template>
+  <div class="progress">
+    <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0"
+         aria-valuemax="100">5 / 10
+    </div>
+  </div>
+</template>
+
+<script>
+  export default {
+    name: "Progress"
+  }
+</script>
+
+<style scoped>
+
+</style>
