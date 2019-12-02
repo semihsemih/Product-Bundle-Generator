@@ -1,18 +1,18 @@
 <template>
   <div class="col-md-4 pl-5 product-card-container">
     <div class="mb-3"></div>
-    <Product>
-
-      <div class="row no-gutters">
+    <h4  v-if="productList.length === 0">Please add product.</h4>
+    <Product v-for="product in productList" v-bind:key="product.id">
+      <div v-if="productList.length > 0"  class="row no-gutters">
         <div class="col-md-4">
-          <img src="../assets/images/demo2.png" class="card-img" alt="product-title">
+          <img :src="product.selectedImage" class="card-img" :alt="product.name">
         </div>
         <div class="col-md-8">
           <div class="card-body">
-            <span class="card-text"><b>Product Name: </b>Liquid Soap</span><br>
-            <span class="card-text"><b>Piece: </b>3</span><br>
-            <span class="card-text"><b>Unit Price: </b>24 $</span><br>
-            <span class="card-text"><b>Total Price: </b>72 $</span>
+            <span class="card-text"><b>Product Name: </b>{{ product.name }}</span><br>
+            <span class="card-text"><b>Piece: </b>{{ product.quantity }}</span><br>
+            <span class="card-text"><b>Unit Price: </b>{{ product.price }} $</span><br>
+            <span class="card-text"><b>Total Price: </b>{{ product.totalPrice }} $</span>
           </div>
         </div>
       </div>
@@ -22,12 +22,27 @@
 </template>
 
 <script>
+  import {eventBus} from "../main";
   import Product from "./Product";
 
   export default {
     name: "Products",
+    data: function () {
+      return {
+        productList: []
+      }
+    },
     components: {
       Product
+    },
+    created() {
+      eventBus.$on('newProduct', (product) => {
+        if (this.productList.length < 10) {
+          this.productList.push(product);
+        } else {
+          alert('You can add up to 10 products.');
+        }
+      })
     }
   }
 </script>
