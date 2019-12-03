@@ -39,6 +39,7 @@
       eventBus.$on('newProduct', (product) => {
         if (this.productList.length < 10) {
           this.productList.push(product);
+          eventBus.$emit('productListLength', this.productList.length)
         } else {
           alert('You can add up to 10 products.');
         }
