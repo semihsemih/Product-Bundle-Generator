@@ -1,5 +1,11 @@
-# product-bundle-generator
+# Product Bundle Generator
 
+- Add Product
+- Calculate Total Bundle Price
+
+[Demo](https://semihsemih.github.io/Product-Bundle-Generator/)
+
+![](public/assets/images/demo.jpg)
 ## Project setup
 ```
 npm install
